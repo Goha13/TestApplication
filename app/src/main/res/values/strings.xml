@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="surname">Fam</string>
+    <string name="dataosm">DataOsm</string>
+    <string name="connect">Пожалуйста, подключите интернет</string>
+    <string name="kininf">Информация о кино</string>
+    <string name="vote_count">vote_count</string>
+    <string name="idd">idd</string>
+    <string name="video">video</string>
+    <string name="vote_average">vote_average</string>
+    <string name="title">title</string>
+    <string name="popularity">popularity</string>
+    <string name="poster_path">poster_path</string>
+    <string name="original_language">original_language</string>
+    <string name="original_title">original_title</string>
+    <string name="backdrop_path">backdrop_path</string>
+    <string name="adult">adult</string>
+    <string name="overview">overview</string>
+    <string name="release_date">release_date</string>
+</resources>
