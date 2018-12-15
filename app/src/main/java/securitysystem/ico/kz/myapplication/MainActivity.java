@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.arch.paging.PagedList;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,13 +14,17 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.SearchView.OnCloseListener;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
-    SearchView edSearch;
+//    SearchView edSearch;
     private RecyclerView recyclerView;
     ItemViewModel itemViewModel;
     ItemAdapter adapter;
@@ -27,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        edSearch = findViewById(R.id.edSearch);
-        edSearch.setFocusable(false);
-        edSearch.setOnQueryTextListener(this);
+//        edSearch = findViewById(R.id.edSearch);
+//        edSearch.setFocusable(false);
+//        edSearch.setOnQueryTextListener(this);
 //        edSearch.addTextChangedListener(new TextWatcher() {
 //            @Override
 //            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -57,13 +62,45 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 //        replaceSubscription(query);
         return false;
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        MenuItem searchViewItem = menu.findItem(R.id.app_bar_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchViewItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText.length()>2){
+                    replaceSubscription(newText);
+                }
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
     private void replaceSubscription(String query) {
         Log.d("Proverkaaa","proverkaa");
         ViewModelProvider.Factory factory = new ItemDataSourceFactory(MainActivity.this,query );
         itemViewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
-        if(!query.equals("")){
-            itemViewModel.replaceSubscription(this, query);
-        }
+        itemViewModel.replaceSubscription(this, query);
         startListening();
     }
     private void startListening() {

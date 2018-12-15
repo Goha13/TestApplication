@@ -25,7 +25,7 @@ TextView vote_count,idd,video,vote_average,title,popularity,poster_path,original
         adult=findViewById(R.id.adult);
         overview=findViewById(R.id.overview);
         release_date=findViewById(R.id.release_date);
-        setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
+//        setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(getResources().getString(R.string.kininf));

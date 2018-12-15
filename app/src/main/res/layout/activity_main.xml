@@ -9,24 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <SearchView
-            android:id="@+id/edSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:iconifiedByDefault="false">
-        </SearchView>
-        <!--<EditText-->
+        <!--<SearchView-->
             <!--android:id="@+id/edSearch"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"/>-->
+            <!--android:iconifiedByDefault="false">-->
+        <!--</SearchView>-->
+        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/edSearch"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_weight="1"/>&ndash;&gt;-->
 
-        <!--<ImageView-->
-            <!--android:layout_width="24dp"-->
-            <!--android:layout_height="24dp"-->
-            <!--android:src="@drawable/ic_search_black_24dp"-->
-            <!--android:tint="@color/colorPrimary"-->
-            <!--android:layout_gravity="end"/>-->
+        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="24dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="24dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:src="@drawable/ic_search_black_24dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:tint="@color/colorPrimary"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_gravity="end"/>&ndash;&gt;-->
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
