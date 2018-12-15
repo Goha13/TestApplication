@@ -41,6 +41,10 @@ class ItemAdapter extends PagedListAdapter<Results, ItemAdapter.ItemViewHolder> 
             holder.textView4.setText("Дата релиза: "+item.getRelease_date());
             holder.textView5.setText("Средний голос: "+item.getVote_average());
 
+            if(new ShaaredPreferences(mCtx).load(String.valueOf(item.getOriginal_title())).equals("true")){
+                holder.imgAvatar.setImageResource(R.drawable.ic_star_black_24dp);
+            }
+
         }else{
             Toast.makeText(mCtx, "Item is null", Toast.LENGTH_LONG).show();
         }
