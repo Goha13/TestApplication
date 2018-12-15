@@ -17,13 +17,14 @@ public class ItemDataSourceFactory extends DataSource.Factory implements ViewMod
     String date_to;
     String s;
     Context context;
-    public ItemDataSourceFactory(Context context){
+    public ItemDataSourceFactory(Context context,String s){
         this.context=context;
+        this.s=s;
     }
 
     @Override
     public DataSource<Integer,Results> create() {
-        ItemDataSource itemDataSource = new ItemDataSource(context);
+        ItemDataSource itemDataSource = new ItemDataSource(context,s);
         itemLiveDataSource.postValue(itemDataSource);
         return itemDataSource;
     }
@@ -34,7 +35,7 @@ public class ItemDataSourceFactory extends DataSource.Factory implements ViewMod
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(ItemViewModel.class)) {
-            return (T) new ItemViewModel(context);
+            return (T) new ItemViewModel(context,s);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

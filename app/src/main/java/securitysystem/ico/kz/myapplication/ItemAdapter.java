@@ -37,8 +37,9 @@ class ItemAdapter extends PagedListAdapter<Results, ItemAdapter.ItemViewHolder> 
         Results item = getItem(position);
 
         if (item != null) {
-            holder.textView.setText(item.getId()+"dfdf");
-            holder.textView5.setText(" "+item.getOriginal_language());
+            holder.textView.setText("Наименование: "+item.getOriginal_title());
+            holder.textView4.setText("Дата релиза: "+item.getRelease_date());
+            holder.textView5.setText("Средний голос: "+item.getVote_average());
 
         }else{
             Toast.makeText(mCtx, "Item is null", Toast.LENGTH_LONG).show();
@@ -64,9 +65,9 @@ class ItemAdapter extends PagedListAdapter<Results, ItemAdapter.ItemViewHolder> 
         ImageView imgAvatar;
         public ItemViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.textViewSurName);
+            textView = itemView.findViewById(R.id.textViewTitle);
             textView4=itemView.findViewById(R.id.date);
-            textView5=itemView.findViewById(R.id.datedesc);
+            textView5=itemView.findViewById(R.id.vote_avera);
             imgAvatar=itemView.findViewById(R.id.imgAvatar);
         }
     }

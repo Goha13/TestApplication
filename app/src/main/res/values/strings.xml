@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="surname">Fam</string>
-    <string name="dataosm">DataOsm</string>
+    <string name="releaseDate">ReleaseDate</string>
     <string name="connect">Пожалуйста, подключите интернет</string>
     <string name="kininf">Информация о кино</string>
     <string name="vote_count">vote_count</string>

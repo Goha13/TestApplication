@@ -10,8 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -25,24 +28,42 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         edSearch = findViewById(R.id.edSearch);
-        edSearch.setFocusable(true);
+        edSearch.setFocusable(false);
         edSearch.setOnQueryTextListener(this);
+//        edSearch.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                replaceSubscription(s.toString());
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
         adapter = new ItemAdapter(this);
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        replaceSubscription();
+        replaceSubscription("");
     }
     @Override
     public boolean onQueryTextSubmit(String query) {
 //        replaceSubscription(query);
         return false;
     }
-    private void replaceSubscription() {
+    private void replaceSubscription(String query) {
         Log.d("Proverkaaa","proverkaa");
-        ViewModelProvider.Factory factory = new ItemDataSourceFactory(MainActivity.this );
+        ViewModelProvider.Factory factory = new ItemDataSourceFactory(MainActivity.this,query );
         itemViewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
-//        itemViewModel.replaceSubscription(this, query);
+        if(!query.equals("")){
+            itemViewModel.replaceSubscription(this, query);
+        }
         startListening();
     }
     private void startListening() {
@@ -79,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
     @Override
     public boolean onQueryTextChange(String newText) {
-//        replaceSubscription(newText);
+        replaceSubscription(newText);
         return false;
     }
 }

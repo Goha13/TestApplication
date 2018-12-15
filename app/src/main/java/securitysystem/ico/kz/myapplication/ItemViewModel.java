@@ -9,26 +9,12 @@ import android.arch.paging.PositionalDataSource;
 import android.content.Context;
 
 public class ItemViewModel extends ViewModel {
-
-//    public ItemViewModel(String org_id,String token,String date_from,String date_to,String s ) {
-//        this.org_id=org_id;
-//        this.token=token;
-//        this.date_from=date_from;
-//        this.date_to=date_to;
-//        this.s=s;
-//    }
-
-
      LiveData<PagedList<Results>> itemPagedList;
     private LiveData<PositionalDataSource<Results>> liveDataSource;
-    String org_id;
-    String token;
-    String date_to;
-    String date_from;
     String s;
     Context context;
     private LiveData<PagedList<Results>> createFilteredUsers(String s){
-        ItemDataSourceFactory itemDataSourceFactory = new ItemDataSourceFactory(context);
+        ItemDataSourceFactory itemDataSourceFactory = new ItemDataSourceFactory(context,s);
         liveDataSource = itemDataSourceFactory.getItemLiveDataSource();
         itemPagedList= new LivePagedListBuilder(itemDataSourceFactory,
                 new PagedList.Config.Builder() //
@@ -40,8 +26,7 @@ public class ItemViewModel extends ViewModel {
                 .build();
         return itemPagedList;
     }
-
-    public ItemViewModel(Context context){
+    public ItemViewModel(Context context,String s){
         this.context=context;
         itemPagedList=createFilteredUsers(s);
     }
@@ -50,6 +35,4 @@ public class ItemViewModel extends ViewModel {
         itemPagedList.removeObservers(lifecycleOwner);
         itemPagedList = createFilteredUsers(s);
     }
-
-
 }
